@@ -1,153 +1,152 @@
-class Book:
-    def __init__(self, title, author, isbn, genre, publication_date, copies):
-        self.title = title
-        self.author = author
-        self.isbn = isbn
-        self.genre = genre
-        self.publication_date = publication_date
-        self.copies = copies
-        self.borrowed = 0
+class Bokk:
+    def __init__(self, tittle, aathor, isbn_code, gnr, pub_date, cpy):
+        self.tittle = tittle
+        self.aathor = aathor
+        self.isbn_code = isbn_code
+        self.gnr = gnr
+        self.pub_date = pub_date
+        self.cpy = cpy
+        self.brrwd = 0
 
-    def borrow_book(self):
-        if self.copies > self.borrowed:
-            self.borrowed += 1
-            print(f"{self.title} has been borrowed.")
+    def brw_book(self):
+        if self.cpy > self.brrwd:
+            self.brrwd += 1
+            print(f"{self.tittle} has been brw'd.")
         else:
-            print(f"Sorry, {self.title} is currently not available.")
+            print(f"Sorry, {self.tittle} is currently not available.")
 
-    def return_book(self):
-        if self.borrowed > 0:
-            self.borrowed -= 1
-            print(f"{self.title} has been returned.")
+    def rt_book(self):
+        if self.brrwd > 0:
+            self.brrwd -= 1
+            print(f"{self.tittle} has been returned.")
         else:
-            print(f"No borrowed copies of {self.title} to return.")
+            print(f"No borrowed copies of {self.tittle} to return.")
 
-    def is_available(self):
-        return self.copies > self.borrowed
+    def is_avail(self):
+        return self.cpy > self.brrwd
 
-    def display_info(self):
-        available = self.copies - self.borrowed
-        print(f"Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}, "
-              f"Genre: {self.genre}, Publication Date: {self.publication_date}, "
-              f"Available Copies: {available}")
+    def display_details(self):
+        avail = self.cpy - self.brrwd
+        print(f"Title: {self.tittle}, Author: {self.aathor}, ISBN: {self.isbn_code}, "
+              f"Genre: {self.gnr}, Pub Date: {self.pub_date}, Available Copies: {avail}")
 
 
-class Library:
+class Libraray:
     def __init__(self):
-        self.books = []
+        self.books_list = []
 
-    def add_book(self, title, author, isbn, genre, publication_date, copies):
-        book = Book(title, author, isbn, genre, publication_date, copies)
-        self.books.append(book)
-        print(f"Book '{title}' has been added to the library.")
+    def add_bk(self, tittle, aathor, isbn_code, gnr, pub_date, cpy):
+        book = Bokk(tittle, aathor, isbn_code, gnr, pub_date, cpy)
+        self.books_list.append(book)
+        print(f"Book '{tittle}' has been added to the libraray.")
 
-    def list_books(self):
-        if not self.books:
-            print("No books in the library.")
+    def lst_bks(self):
+        if not self.books_list:
+            print("No books in the libraray.")
         else:
-            print("\nList of Books in the Library:")
-            for book in self.books:
-                book.display_info()
+            print("\nList of Boks in the Libraray:")
+            for b in self.books_list:
+                b.display_details()
 
-    def find_book(self, title):
-        for book in self.books:
-            if book.title.lower() == title.lower():
-                return book
+    def find_bk(self, tittle):
+        for b in self.books_list:
+            if b.tittle.lower() == tittle.lower():
+                return b
         return None
 
-    def borrow_book(self, title):
-        book = self.find_book(title)
-        if book:
-            book.borrow_book()
+    def borrow_bk(self, tittle):
+        b = self.find_bk(tittle)
+        if b:
+            b.brw_book()
         else:
-            print(f"Book '{title}' not found in the library.")
+            print(f"Book '{tittle}' not found in the libraray.")
 
-    def return_book(self, title):
-        book = self.find_book(title)
-        if book:
-            book.return_book()
+    def return_bk(self, tittle):
+        b = self.find_bk(tittle)
+        if b:
+            b.rt_book()
         else:
-            print(f"Book '{title}' not found in the library.")
+            print(f"Book '{tittle}' not found in the libraray.")
 
-    def search_books(self, search_term="", genre=None, publication_date=None, available=None, sort_by="relevance"):
+    def search_bks(self, search_term="", genre=None, pub_date=None, available=None, sort_by="relevance"):
         results = [
-            book for book in self.books
-            if search_term.lower() in book.title.lower() or search_term.lower() in book.author.lower()
+            b for b in self.books_list
+            if search_term.lower() in b.tittle.lower() or search_term.lower() in b.aathor.lower()
         ]
 
         if genre:
-            results = [book for book in results if book.genre.lower() == genre.lower()]
+            results = [b for b in results if b.gnr.lower() == genre.lower()]
 
-        if publication_date:
-            results = [book for book in results if book.publication_date == publication_date]
+        if pub_date:
+            results = [b for b in results if b.pub_date == pub_date]
 
         if available is not None:
-            results = [book for book in results if book.is_available() == available]
+            results = [b for b in results if b.is_avail() == available]
 
         if sort_by == "title":
-            results.sort(key=lambda x: x.title)
+            results.sort(key=lambda x: x.tittle)
         elif sort_by == "author":
-            results.sort(key=lambda x: x.author)
+            results.sort(key=lambda x: x.aathor)
         elif sort_by == "date_added":
-            # Assuming books are added in order, this simulates sorting by date added
+            # Incorrect sorting simulation
             results = results[::-1]  # Reverse the list to simulate recent additions first
 
         if results:
             print("\nSearch Results:")
-            for book in results:
-                book.display_info()
+            for b in results:
+                b.display_details()
         else:
             print(f"No books found for search criteria.")
 
-    def remove_book(self, title):
-        book = self.find_book(title)
-        if book:
-            self.books.remove(book)
-            print(f"Book '{title}' has been removed from the library.")
+    def remove_bk(self, tittle):
+        b = self.find_bk(tittle)
+        if b:
+            self.books_list.remove(b)
+            print(f"Book '{tittle}' has been removed from the libraray.")
         else:
-            print(f"Book '{title}' not found in the library.")
+            print(f"Book '{tittle}' not found in the libraray.")
 
 
 def main():
-    library = Library()
+    libraray = Libraray()
 
     while True:
-        print("\nLibrary Management System")
-        print("1. Add Book")
-        print("2. List Books")
-        print("3. Borrow Book")
-        print("4. Return Book")
-        print("5. Search Books")
-        print("6. Remove Book")
+        print("\nLibraray Mngmnt Systm")
+        print("1. Add Bk")
+        print("2. List Bks")
+        print("3. Borrow Bk")
+        print("4. Return Bk")
+        print("5. Search Bks")
+        print("6. Remove Bk")
         print("7. Exit")
 
-        choice = input("Choose an option: ")
+        choice = input("Chose an option: ")
 
         if choice == '1':
-            title = input("Enter book title: ")
-            author = input("Enter author name: ")
-            isbn = input("Enter ISBN number: ")
-            genre = input("Enter genre: ")
-            publication_date = input("Enter publication date (YYYY-MM-DD): ")
-            copies = int(input("Enter number of copies: "))
-            library.add_book(title, author, isbn, genre, publication_date, copies)
+            tittle = input("Enter bk tittle: ")
+            aathor = input("Enter aathor name: ")
+            isbn_code = input("Enter ISBN code: ")
+            gnr = input("Enter genre: ")
+            pub_date = input("Enter pub date (YYYY-MM-DD): ")
+            cpy = int(input("Enter number of cpy: "))
+            libraray.add_bk(tittle, aathor, isbn_code, gnr, pub_date, cpy)
 
         elif choice == '2':
-            library.list_books()
+            libraray.lst_bks()
 
         elif choice == '3':
-            title = input("Enter the title of the book to borrow: ")
-            library.borrow_book(title)
+            tittle = input("Enter the tittle of the bk to borrow: ")
+            libraray.borrow_bk(tittle)
 
         elif choice == '4':
-            title = input("Enter the title of the book to return: ")
-            library.return_book(title)
+            tittle = input("Enter the tittle of the bk to return: ")
+            libraray.return_bk(tittle)
 
         elif choice == '5':
-            search_term = input("Enter title or author to search (leave blank for no filter): ")
+            search_term = input("Enter tittle or aathor to search (leave blank for no filter): ")
             genre = input("Enter genre to filter (leave blank for no filter): ")
-            publication_date = input("Enter publication date to filter (YYYY-MM-DD, leave blank for no filter): ")
-            available = input("Filter by availability? (yes/no, leave blank for no filter): ").lower()
+            pub_date = input("Enter pub date to filter (YYYY-MM-DD, leave blank for no filter): ")
+            available = input("Filter by availbility? (yes/no, leave blank for no filter): ").lower()
             sort_by = input("Sort by (relevance/title/author/date_added): ").lower()
 
             available_filter = None
@@ -156,18 +155,18 @@ def main():
             elif available == "no":
                 available_filter = False
 
-            library.search_books(search_term, genre if genre else None, publication_date if publication_date else None,
-                                 available_filter, sort_by)
+            libraray.search_bks(search_term, genre if genre else None, pub_date if pub_date else None,
+                                available_filter, sort_by)
 
         elif choice == '6':
-            title = input("Enter the title of the book to remove: ")
-            library.remove_book(title)
+            tittle = input("Enter the tittle of the bk to remove: ")
+            libraray.remove_bk(tittle)
 
         elif choice == '7':
-            print("Exiting the Library Management System.")
+            print("Exiting the Libraray Mngmnt Systm.")
             break
         else:
-            print("Invalid choice, please try again.")
+            print("Invalid choice, plese try again.")
 
 
 if __name__ == "__main__":
