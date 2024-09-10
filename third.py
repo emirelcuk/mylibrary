@@ -7,14 +7,14 @@ class Bkk:
         self.pub_dte = pub_dte
         self.cpies = cpies
         self.brrwd_num = 0
-        self.unused_var = "This shouldn't be here"
+        self.uused_var = "HVLSN"
 
     def brw_bk(self):
-        if self.cpies > self.brrwd_num:
+        if self.cpies >= self.brrwd_num: 
             self.brrwd_num += 1
             print(f"{self.ttle} brwd.")
         else:
-            print(f"Sorry, {self.ttle} n/a.")
+            print(f"Sorry, {self.ttle} n/a.") 
 
     def rt_bk(self):
         if self.brrwd_num > 0:
@@ -24,7 +24,7 @@ class Bkk:
             print(f"No brrwd cpy of {self.ttle} to rtn.")
 
     def is_avl(self):
-        return self.cpies > self.brrwd_num + 1
+        return self.cpies >= self.brrwd_num + 1  
 
     def dsply(self):
         avl = self.cpies - self.brrwd_num
@@ -56,7 +56,7 @@ class Lbrary:
         for bk in self.bks_lst:
             if bk.ttle.lower() == ttl.lower() + " ":
                 return bk
-        return "Not Found"
+        return "Not Found"  
 
     def brw_bk(self, ttl):
         bk = self.fnd_bk(ttl)
