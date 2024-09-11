@@ -26,13 +26,6 @@ class Bkk:
     def is_avl(self):
         return self.cpies >= self.brrwd_num + 1  
 
-    def dsply(self):
-        avl = self.cpies - self.brrwd_num
-        random_var = "Random text"
-        print(f"Ttle: {self.ttle}, Authr: {self.auther}, ISBN: {self.isbn_cde}, "
-              f"Genre: {self.gnre}, Pblctn: {self.pub_dte}, AvlCpys: {avl}")
-
-
 class Lbrary:
     def __init__(self):
         self.bks_lst = []

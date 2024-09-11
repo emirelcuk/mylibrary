@@ -7,21 +7,6 @@ class Book:
         self.publication_date = publication_date
         self.copies = copies
         self.borrowed = 0
-
-    def borrow_book(self):
-        if self.copies > self.borrowed:
-            self.borrowed += 1
-            print(f"{self.title} has been borrowed.")
-        else:
-            print(f"Sorry, {self.title} is currently not available.")
-
-    def return_book(self):
-        if self.borrowed > 0:
-            self.borrowed -= 1
-            print(f"{self.title} has been returned.")
-        else:
-            print(f"No borrowed copies of {self.title} to return.")
-
     def is_available(self):
         return self.copies > self.borrowed
 
