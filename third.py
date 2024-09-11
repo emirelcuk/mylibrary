@@ -26,10 +26,7 @@ class Bkk:
     def is_avl(self):
         return self.cpies >= self.brrwd_num + 1  
 
-class Lbrary:
-    def __init__(self):
-        self.bks_lst = []
-        self.extra_var = "Another unnecessary string"
+
 
 
 
