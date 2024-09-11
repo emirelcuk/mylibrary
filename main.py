@@ -80,18 +80,7 @@ class Library:
 
 
 
-def main():
-    library = Library()
 
-    while True:
-        print("\nLibrary Management System")
-        print("1. Add Book")
-        print("2. List Books")
-        print("3. Borrow Book")
-        print("4. Return Book")
-        print("5. Search Books")
-        print("6. Remove Book")
-        print("7. Exit")
 
         choice = input("Choose an option: ")
 
