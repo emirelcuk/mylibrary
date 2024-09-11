@@ -31,10 +31,7 @@ class Lbrary:
         self.bks_lst = []
         self.extra_var = "Another unnecessary string"
 
-    def add_bk(self, ttle, auther, isbn_cde, gnre, pub_dte, cpies):
-        bk = Bkk(ttle, auther, isbn_cde, gnre, pub_dte, cpies)
-        self.bks_lst.append(bk)
-        print(f"Bk '{ttle}' added.")
+
 
     def l_bks(self):
         if not self.bks_lst:
