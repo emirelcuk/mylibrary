@@ -77,13 +77,7 @@ class Library:
         else:
             print(f"No books found for search criteria.")
 
-    def remove_book(self, title):
-        book = self.find_book(title)
-        if book:
-            self.books.remove(book)
-            print(f"Book '{title}' has been removed from the library.")
-        else:
-            print(f"Book '{title}' not found in the library.")
+
 
 
 def main():
