@@ -8,7 +8,7 @@ class Book:
         self.copies = copies
         self.borrowed = 0
 
-    def borrow_book(self):
+    de borrow_book(self):
         if self.copies > self.borrowed:
             self.borrowed += 1
             print(f"{self.title} has been borrowed.")
