@@ -69,28 +69,6 @@ class Library:
         else:
             print(f"Book '{title}' not found in the library.")
 
-    def search_books(self, search_term="", genre=None, publication_date=None, available=None, sort_by="relevance"):
-        results = [
-            book for book in self.books
-            if search_term.lower() in book.title.lower() or search_term.lower() in book.author.lower()
-        ]
-
-        if genre:
-            results = [book for book in results if book.genre.lower() == genre.lower()]
-
-        if publication_date:
-            results = [book for book in results if book.publication_date == publication_date]
-
-        if available is not None:
-            results = [book for book in results if book.is_available() == available]
-
-        if sort_by == "title":
-            results.sort(key=lambda x: x.title)
-        elif sort_by == "author":
-            results.sort(key=lambda x: x.author)
-        elif sort_by == "date_added":
-            # Assuming books are added in order, this simulates sorting by date added
-            results = results[::-1]  # Reverse the list to simulate recent additions first
 
         if results:
             print("\nSearch Results:")
